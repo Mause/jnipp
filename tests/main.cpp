@@ -579,7 +579,7 @@ int main()
     RUN_TEST(Vm_notAllowedMultipleVms);
 
     {
-        jni::Vm vm;
+        // jni::Vm vm;
 
         // jni::Class Tests
         RUN_TEST(Class_findByName_success);
