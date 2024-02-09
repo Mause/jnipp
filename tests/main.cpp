@@ -17,17 +17,7 @@
 
 
 TEST(Vm_detectsJreInstall) {
-    try
-    {
-        jni::Vm vm;
-    }
-    catch (jni::InitializationException&)
-    {
-        ASSERT(0);
-        return;
-    }
-
-    ASSERT(1);
+    jni::Vm vm;
 }
 
 TEST(Vm_notAllowedMultipleVms)
