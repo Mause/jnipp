@@ -35,7 +35,7 @@ jobs:
         with:
           java-version: 1.8
           java-package: jdk
-          distribution: adoptjdk
+          distribution: adopt
       - name: Build
         run: make
       - name: Test
