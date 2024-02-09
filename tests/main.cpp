@@ -5,15 +5,18 @@
 #include <cmath>
 
 // Local Dependencies
-#include "testing.h"
+#define CATCH_CONFIG_MAIN
+#include "catch.hpp"
 
 /*
     jni::Vm Tests
  */
 
+#define TEST(name) TEST_CASE(#name, "[jni]")
+#define ASSERT(x) REQUIRE(x)
 
-TEST(Vm_detectsJreInstall)
-{
+
+TEST(Vm_detectsJreInstall) {
     try
     {
         jni::Vm vm;
@@ -155,7 +158,7 @@ TEST(Class_get_staticField_byName)
     jni::Class Double("java/lang/Double");
 
     ASSERT(Short.get<short>("MAX_VALUE") == short(0x7FFF));
-    ASSERT(Character.get<wchar_t>("MAX_VALUE") == L'\xFFFF')
+    ASSERT(Character.get<wchar_t>("MAX_VALUE") == L'\xFFFF');
     ASSERT(Integer.get<int>("MAX_VALUE") == int(0x7FFFFFFF));
     ASSERT(Long.get<long long>("MAX_VALUE") == (long long) (0x7FFFFFFFFFFFFFFF));
     ASSERT(std::isnan(Float.get<float>("NaN")));
@@ -570,74 +573,5 @@ TEST(Arg_ObjectPtr)
     int i = jni::Class("java/lang/Integer").call<int>("parseInt", &str1);
 
     ASSERT(i == 123);
-}
-
-int main()
-{
-    // jni::Vm Tests
-    RUN_TEST(Vm_detectsJreInstall);
-    RUN_TEST(Vm_notAllowedMultipleVms);
-
-    {
-        // jni::Vm vm;
-
-        // jni::Class Tests
-        RUN_TEST(Class_findByName_success);
-        RUN_TEST(Class_findByName_failure);
-        RUN_TEST(Class_getName);
-        RUN_TEST(Class_getParent);
-        RUN_TEST(Class_newInstance);
-        RUN_TEST(Class_newInstance_withArgs);
-        RUN_TEST(Class_getStaticField);
-        RUN_TEST(Class_getMethod);
-        RUN_TEST(Class_getStaticMethod);
-        RUN_TEST(Class_call);
-        RUN_TEST(Class_get_staticField);
-        RUN_TEST(Class_get_staticField_byName);
-        RUN_TEST(Class_call_staticMethod_byName);
-        RUN_TEST(Class_getConstructor);
-
-        // jni::Object Tests
-        RUN_TEST(Object_defaultConstructor_isNull);
-        RUN_TEST(Object_nullary_construct_from_signature);
-        RUN_TEST(Object_copyConstructorIsSameObject);
-        RUN_TEST(Object_moveConstructor);
-        RUN_TEST(Object_copyAssignmentOperator);
-        RUN_TEST(Object_moveAssignmentOperator);
-        RUN_TEST(Object_call);
-        RUN_TEST(Object_call_byName);
-        RUN_TEST(Object_call_withArgs);
-        RUN_TEST(Object_call_byNameWithArgs);
-        RUN_TEST(Object_call_returningArray);
-        RUN_TEST(Object_makeLocalReference);
-
-        // jni::Enum Tests
-        RUN_TEST(Enum_get);
-
-        // jni::Array Tests
-        RUN_TEST(Array_defaultConstructor);
-        RUN_TEST(Array_constructor);
-        RUN_TEST(Array_constructor_eachType);
-        RUN_TEST(Array_constructor_withType);
-        RUN_TEST(Array_copyConstructor);
-        RUN_TEST(Array_moveConstructor);
-        RUN_TEST(Array_getElement_defaultValue);
-        RUN_TEST(Array_getElement_indexException);
-        RUN_TEST(Array_setElement_basicType);
-        RUN_TEST(Array_setElement_string);
-        RUN_TEST(Array_setElement_indexException);
-
-        // Argument Type Tests
-        RUN_TEST(Arg_bool);
-        RUN_TEST(Arg_wchar);
-        RUN_TEST(Arg_double);
-        RUN_TEST(Arg_float);
-        RUN_TEST(Arg_int);
-        RUN_TEST(Arg_longLong);
-        RUN_TEST(Arg_Object);
-        RUN_TEST(Arg_ObjectPtr);
-    }
-
-    return 0;
 }
 
