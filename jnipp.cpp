@@ -1421,7 +1421,9 @@ namespace jni
                 if (!javaHome.empty()) {
                     std::string options[] = {
                         javaHome + "/jre/lib/amd64/server/libjvm.so",
+                        javaHome + "/jre/lib/arm64/server/libjvm.so",
                         javaHome + "/jre/lib/amd64/client/libjvm.so",
+                        javaHome + "/jre/lib/arm64/client/libjvm.so",
                         javaHome + "/jre/lib/server/libjvm.so",
                         javaHome + "/jre/lib/client/libjvm.so",
                         javaHome + "/lib/server/libjvm.so",
