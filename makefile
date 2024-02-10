@@ -20,11 +20,8 @@ CXXFLAGS=-I. -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/$(OS_NAME) -ldl -std=
 SRC=jnipp.o main.o
 VPATH=tests
 
-%.o: %.cpp
-	$(CC) -c -o $@ $< $(CXXFLAGS)
-
-test: $(SRC)
-	$(CC) -o test $(SRC) $(CXXFLAGS)
+test: tests/main.cpp
+	cmake --build .
 
 clean:
 	-$(RM) $(SRC) test
