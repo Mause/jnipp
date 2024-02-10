@@ -41,7 +41,7 @@ jobs:
       - name: Test
         working-directory: build
         run: |
-          ctest
+          ctest --rerun-failed --output-on-failure
   ubuntu:
     name: ubuntu
     runs-on: ubuntu-latest
