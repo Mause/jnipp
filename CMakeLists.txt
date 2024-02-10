@@ -10,14 +10,13 @@ find_package(JNI REQUIRED)
 include(CTest)
 
 message(STATUS "JNI_INCLUDE_DIRS: ${JNI_INCLUDE_DIRS}")
-message(STATUS "JNI_JVM_LIBRARY: ${JNI_JVM_LIBRARY}")
 
 add_library(jnipp jnipp.cpp)
 target_include_directories(
   jnipp
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PRIVATE ${JNI_INCLUDE_DIRS})
-target_compile_definitions(jnipp PUBLIC -DJVM_PATH="${JNI_JVM_LIBRARY}")
+target_compile_definitions(jnipp PUBLIC -DJVM_PATH=$<LINK_LIBRARIES:JNI::JVM>)
 target_compile_options(jnipp PUBLIC -ldl -std=c++11 -Wall -g)
 target_link_libraries(jnipp PUBLIC ${CMAKE_DL_LIBS})
 
