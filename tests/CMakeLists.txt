@@ -2,6 +2,8 @@
 #
 # SPDX-License-Identifier: MIT
 
+find_package(JNI REQUIRED)
+
 add_executable(main_test main.cpp testing.h)
 target_link_libraries(main_test PRIVATE jnipp)
 add_test(NAME main_test COMMAND main_test)
@@ -16,3 +18,6 @@ add_executable(external_detach external_detach.cpp testing.h)
 target_link_libraries(external_detach PUBLIC jnipp ${JNI_LIBRARIES})
 target_include_directories(external_detach PUBLIC ${JNI_INCLUDE_DIRS})
 add_test(NAME external_detach COMMAND external_detach)
+
+add_compile_definitions(PUBLIC -DJVM_LIBRARY_PATH=$<TARGET_FILE:JNI::JVM>)
+
