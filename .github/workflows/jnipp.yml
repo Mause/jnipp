@@ -39,7 +39,9 @@ jobs:
       - name: Build
         run: make
       - name: Test
-        run: ./test
+        run: |
+          ls build
+          ./build/test
   ubuntu:
     name: ubuntu
     runs-on: ubuntu-latest
