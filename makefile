@@ -20,7 +20,7 @@ CXXFLAGS=-I. -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/$(OS_NAME) -ldl -std=
 VPATH=tests
 
 test: tests/main.cpp
-	mkdir -p build && cd build && cmake --build ..
+	mkdir -p build && cd build && cmake -S .. -B . && make
 
 clean:
 	-$(RM) $(SRC) test
