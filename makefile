@@ -15,13 +15,12 @@ endif
 
 JAVA_HOME ?= /usr/lib/jvm/default-java
 
-CXXFLAGS=-I. -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/$(OS_NAME) -ldl -std=c++11 -Wall -g
+CXXFLAGS=-I. -I$(JAVA_HOME)/include -I$(JAVA_HOME)/include/$(OS_NAME) -ldl -std=c++11 -Wall -g -llog
 
-SRC=jnipp.o main.o
 VPATH=tests
 
 test: tests/main.cpp
-	cmake --build .
+	mkdir -p build && cd build && cmake --build ..
 
 clean:
 	-$(RM) $(SRC) test
