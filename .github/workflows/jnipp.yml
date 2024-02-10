@@ -39,9 +39,9 @@ jobs:
       - name: Build
         run: make
       - name: Test
+        working-directory: build
         run: |
-          ls build
-          ./build/test
+          ctest
   ubuntu:
     name: ubuntu
     runs-on: ubuntu-latest
