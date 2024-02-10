@@ -20,7 +20,9 @@
 #endif
 
 TEST(Vm_detectsJreInstall) {
-    jni::Vm vm("JVM_LIBRARY_PATH");
+    auto path = "JVM_LIBRARY_PATH";
+    std::cout << "JVM_LIBRARY_PATH: " << path << std::endl;
+    jni::Vm vm(path);
 }
 
 TEST(Vm_notAllowedMultipleVms)
