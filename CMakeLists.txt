@@ -5,8 +5,12 @@
 cmake_minimum_required(VERSION 3.10.2)
 project(jnipp)
 
+find_package(Java COMPONENTS Development)
 find_package(JNI REQUIRED)
 include(CTest)
+
+message(STATUS "JNI_INCLUDE_DIRS: ${JNI_INCLUDE_DIRS}")
+message(STATUS "JNI_JVM_LIBRARY: ${JNI_JVM_LIBRARY}")
 
 add_library(jnipp jnipp.cpp)
 target_include_directories(
@@ -14,6 +18,7 @@ target_include_directories(
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PRIVATE ${JNI_INCLUDE_DIRS})
 target_compile_definitions(jnipp PUBLIC -DJVM_PATH="${JNI_JVM_LIBRARY}")
+target_compile_options(jnipp PRIVATE -ldl -std=c++11 -Wall -g)
 target_link_libraries(jnipp PUBLIC ${CMAKE_DL_LIBS})
 
 add_subdirectory(tests)
