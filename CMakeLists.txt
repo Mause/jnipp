@@ -18,7 +18,7 @@ target_include_directories(
   PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}
   PRIVATE ${JNI_INCLUDE_DIRS})
 target_compile_definitions(jnipp PUBLIC -DJVM_PATH="${JNI_JVM_LIBRARY}")
-target_compile_options(jnipp PRIVATE -ldl -std=c++11 -Wall -g)
+target_compile_options(jnipp PUBLIC -ldl -std=c++11 -Wall -g)
 target_link_libraries(jnipp PUBLIC ${CMAKE_DL_LIBS})
 
 add_subdirectory(tests)
