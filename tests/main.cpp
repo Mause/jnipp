@@ -20,7 +20,7 @@
 #endif
 
 TEST(Vm_detectsJreInstall) {
-    jni::Vm vm(#JVM_LIBRARY_PATH);
+    jni::Vm vm("JVM_LIBRARY_PATH");
 }
 
 TEST(Vm_notAllowedMultipleVms)
