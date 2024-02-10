@@ -19,8 +19,10 @@
 #error "JVM_LIBRARY_PATH must be defined."
 #endif
 
+#define PASTE(x) #x
+
 TEST(Vm_detectsJreInstall) {
-    auto path = "JVM_LIBRARY_PATH";
+    auto path = PASTE(JVM_LIBRARY_PATH);
     std::cout << "JVM_LIBRARY_PATH: " << path << std::endl;
     jni::Vm vm(path);
 }
