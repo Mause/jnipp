@@ -15,9 +15,12 @@
 #define TEST(name) TEST_CASE(#name, "[jni]")
 #define ASSERT(x) REQUIRE(x)
 
+#ifndef JVM_LIBRARY_PATH
+#error "JVM_LIBRARY_PATH must be defined."
+#endif
 
 TEST(Vm_detectsJreInstall) {
-    jni::Vm vm;
+    jni::Vm vm(JVM_LIBRARY_PATH);
 }
 
 TEST(Vm_notAllowedMultipleVms)
